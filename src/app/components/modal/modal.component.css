@@ -1,0 +1,83 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0, .7);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  box-shadow: 0 0 5px 1px rgba(0,0,0, .7);
+  padding: 15px;
+  position: relative;
+
+  & h3 {
+    font-size: 20px;
+    margin: 0 0 10px;
+  }
+
+  & .close {
+    font-size: 0;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:after,
+    &:before {
+      content: '';
+      width: 100%;
+      height: 3px;
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    &:after {
+      transform: rotate(45deg);
+    }
+
+    &:before {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+    & button {
+      margin-left: 5px;
+      border: none;
+      padding: 7px 15px;
+      background-color: #6C7A89;
+      color: #fff;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

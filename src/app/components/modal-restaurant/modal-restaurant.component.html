@@ -1,0 +1,24 @@
+<div class="modal">
+  <h3>Add new restaurant</h3>
+  <div class="modal-body">
+    <div>
+      <label>Name: </label>
+      <input [(ngModel)]="restaurant.name" placeholder="name" minlength="4" />
+    </div>
+    <div class="location">
+      <div>
+        <label>Lat: </label>
+        <input [(ngModel)]="restaurant.location.lat" placeholder="0" type="number" max="90" min="-90" />
+      </div>
+      <div>
+        <label>Lng: </label>
+        <input [(ngModel)]="restaurant.location.lng" placeholder="0" type="number" max="180" min="-180"/>
+      </div>
+    </div>
+  </div>
+  <button class="close" (click)="close()">Close</button>
+  <div class="modal-footer">
+    <button (click)="confirm()">Ok</button>
+    <button (click)="close()">Cancel</button>
+  </div>
+</div>

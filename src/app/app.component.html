@@ -1,0 +1,24 @@
+<div id="app">
+  <ul>
+    <li *ngFor="let restaurant of restaurants" (click)="onSelect(restaurant)">
+      <restaurant-component
+        [restaurant]="restaurant"
+        [active]="restaurant.id === selectedRestaurant"
+        (restaurantDelete)="handleRestaurantDelete($event)"
+      >
+      </restaurant-component>
+    </li>
+  </ul>
+  <button class="add-btn" (click)="addRestaurant()">Add</button>
+  <map-component class="map" [restaurants]="restaurants" [active]="selectedRestaurant"></map-component>
+</div>
+<modal-component
+  *ngIf="isModalVisible"
+  (isConfirmed)="closeModal($event)"
+  [header]="modal.header"
+  [body]="modal.body"
+></modal-component>
+<modal-restaurant-component
+  *ngIf="isModalRestaurantVisible"
+  (newRestaurant)="newRestaurant($event)"
+></modal-restaurant-component>

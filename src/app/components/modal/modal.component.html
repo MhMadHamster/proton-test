@@ -1,0 +1,9 @@
+<div class="modal">
+  <h3>{{header}}</h3>
+  <div class="modal-body" [innerHTML]="body"></div>
+  <button class="close" (click)="close()">Close</button>
+  <div class="modal-footer">
+    <button (click)="confirm()">Ok</button>
+    <button (click)="close()">Cancel</button>
+  </div>
+</div>

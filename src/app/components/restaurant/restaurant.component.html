@@ -1,0 +1,4 @@
+<div *ngIf="restaurant" class="restaurant" [ngClass]="{ 'active' : active }">
+  <h2>{{restaurant.name}}</h2>
+  <button (click)="deleteRestaurant(restaurant)">Delete</button>
+</div>
