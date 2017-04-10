@@ -1,6 +1,6 @@
 import 'leaflet';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Restaurant } from '../restaurant/restaurant';
+import { Restaurant } from '../../models/model.restaurant';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -59,7 +59,7 @@ export class MapComponent implements OnInit, OnChanges {
           const marker = L.marker([restaurant.location.lat, restaurant.location.lng], {
             icon: icon,
           }).addTo(this.map)
-          .on('click', function() {
+          .on('click', () => {
             console.log(this);
           });
           this.markers[restaurant.id] = {

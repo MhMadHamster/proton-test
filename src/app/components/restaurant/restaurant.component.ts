@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Restaurant } from './restaurant';
+import { Restaurant } from '../../models/model.restaurant';
 
 @Component({
   selector: 'restaurant-component',

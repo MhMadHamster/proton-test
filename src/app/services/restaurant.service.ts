@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 
-import { Restaurant } from '../components/restaurant/restaurant';
+import { Restaurant } from '../models/model.restaurant';
 
 @Injectable()
 export class RestaurantService {
