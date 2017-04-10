@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
+import { MapService } from './services/map.service';
+
 import { AppComponent } from './app.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { MapComponent } from './components/map/map.component';
@@ -21,6 +23,9 @@ import { ModalRestaurantComponent } from './components/modal-restaurant/modal-re
     MapComponent,
     ModalComponent,
     ModalRestaurantComponent
+  ],
+  providers: [
+    MapService
   ],
   bootstrap: [ AppComponent ]
 })

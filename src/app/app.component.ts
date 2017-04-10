@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Restaurant } from './components/restaurant/restaurant';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Restaurant } from './models/model.restaurant';
 import { Modal } from './components/modal/modal';
 import { RestaurantService } from './services/restaurant.service';
+import { MapService } from './services/map.service';
 import { MapComponent } from './components/map/map.component';
 
 import '../styles.css';
@@ -10,7 +11,7 @@ import '../styles.css';
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ],
-  providers: [ RestaurantService ]
+  providers: [ RestaurantService, ]
 })
 export class AppComponent implements OnInit {
   title = 'Closest Restaurants';
@@ -23,18 +24,22 @@ export class AppComponent implements OnInit {
   @ViewChild(MapComponent)
   private map: MapComponent;
 
-  constructor(private restaurantService: RestaurantService, private ref: ChangeDetectorRef) { }
+  constructor(private restaurantService: RestaurantService, private mapService: MapService) { }
 
   ngOnInit(): void {
     this.getRestaurants();
   }
 
   getRestaurants(): void {
-    this.restaurantService.getRestaurants().then(restaurants => this.restaurants = restaurants);
+    this.restaurantService.getRestaurants().then(restaurants => {
+      this.restaurants = restaurants
+      this.mapService.loadMarkers(restaurants);
+    });
   }
 
   onSelect(restaurant: Restaurant): void {
     this.selectedRestaurant = restaurant.id;
+    this.mapService.changeActiveMarker(restaurant.id);
   }
 
   handleRestaurantDelete(restaurant: Restaurant): void {
@@ -51,7 +56,7 @@ export class AppComponent implements OnInit {
       this.restaurants.some((item, i) => {
         if (item.id === this.modal.id) {
           this.restaurants.splice(i, 1);
-          this.map.removeMarker(this.modal.id);
+          this.mapService.removeMarker(this.modal.id);
           return true;
         }
         return false;
@@ -64,7 +69,6 @@ export class AppComponent implements OnInit {
   newRestaurant(restaurant: Restaurant | boolean): void {
     if (typeof restaurant !== 'boolean') {
       this.restaurants.push(restaurant);
-      // ??? forcing to trigger change event for child components
       this.restaurants = this.restaurants.slice();
     }
     this.isModalRestaurantVisible = false;

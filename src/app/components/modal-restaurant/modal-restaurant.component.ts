@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { Restaurant } from '../restaurant/restaurant';
+import { Restaurant } from '../../models/model.restaurant';
 import { v4 } from 'uuid';
 
 @Component({
